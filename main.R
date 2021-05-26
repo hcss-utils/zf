@@ -36,6 +36,5 @@ textDF$docvar1 <- gsub(pattern = "\\/.*", replacement = "", x = textDF$docvar1)
 textDF <- textDF %>%
   dplyr::rename(key = docvar1) %>%
   dplyr::left_join(table.items) %>%
-  dplyr::filter(!is.na(itemID), !itemID %in% table.itemNotes$itemID)
-
-textDF$text
+  dplyr::filter(!is.na(itemID), !itemID %in% table.itemNotes$itemID) %>%
+  write.csv(.,file = OUTPUT_CSV)
